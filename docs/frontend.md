@@ -2,8 +2,8 @@
 
 ## HTML
 
-This is a single-page application, with the HTML file being stored
-at `/templates/landing_page.html`
+This map is a single-page application, with the HTML file being stored
+at `/templates/landing-page.html`. This uses Django's templating syntax to inherit from `base.html` and `base-navbar.html`.
 
 ## JavaScript
 

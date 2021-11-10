@@ -1,6 +1,6 @@
-# pins-on-the-map
+# Cecil B. Moore Engagement Map
 
-Crowdsourcing web application that collects community feedback for planning projects.
+Crowdsourcing web application that collects community feedback for the Cecil B. Moore Vision Zero project.
 
 ## Tech Stack
 
