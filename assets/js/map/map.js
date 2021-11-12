@@ -6,6 +6,7 @@ import {
   MAPBOX_BASEMAP,
   MAPBOX_TOKEN,
 } from "../project_settings";
+import { BASE_PATH } from "../api/base";
 
 mapboxgl.accessToken = MAPBOX_TOKEN;
 
@@ -22,7 +23,7 @@ const _make_control_with_project_button = (map) => {
   button.type = "button";
   icon.id = "project-extent-img";
   icon.alt = "DVRPC Alternative Logo";
-  icon.src = "/static/images/PROJECT-icon.png";
+  icon.src = BASE_PATH + "/static/images/PROJECT-icon.png";
 
   button.classList.add("mapboxgl-ctrl-icon");
   button.classList.add("mapboxgl-ctrl-dvrpc");
