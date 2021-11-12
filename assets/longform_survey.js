@@ -22,6 +22,10 @@ import {
   get_textarea_input,
   get_priority_ranking,
 } from "./js/survey/get_survey_responses_from_html";
+import {
+  GO_TO_DEMOGRAPHICS_PAGE_URL,
+  GO_TO_THANKS_PAGE_URL,
+} from "./js/api/base";
 
 let q1 = {
   id: "q1",
@@ -175,9 +179,9 @@ document.getElementById("submit-button").onclick = () => {
 
   add_longform_survey_to_database(data).then(async (response) => {
     if (response.user_was_added) {
-      window.location.replace("/demographics");
+      window.location.replace(GO_TO_DEMOGRAPHICS_PAGE_URL);
     } else {
-      window.location.replace("/thanks");
+      window.location.replace(GO_TO_THANKS_PAGE_URL);
     }
   });
 };

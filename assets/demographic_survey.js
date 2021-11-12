@@ -16,6 +16,8 @@ import {
   get_textarea_input,
 } from "./js/survey/get_survey_responses_from_html";
 
+import { GO_TO_HOME_PAGE_URL, GO_TO_THANKS_PAGE_URL } from "./js/api/base";
+
 let q1 = {
   id: "q1",
   base_div: "questions-about-demographics",
@@ -112,6 +114,10 @@ document.getElementById("submit-button").onclick = () => {
   };
 
   add_user_info_to_database(data).then(async (response) => {
-    window.location.replace("/thanks");
+    window.location.replace(GO_TO_THANKS_PAGE_URL);
   });
+};
+
+document.getElementById("nothanks-button").onclick = () => {
+  window.location.replace(GO_TO_HOME_PAGE_URL);
 };
