@@ -176,7 +176,7 @@ textarea {
   padding: 5px;
   border-radius: 5px;
   background-color: var(--theme-dark-gray);
-  color: var(--theme-light-gray);
+  color: white;
   border: 1px solid var(--theme-light-gray);
   cursor: pointer;
 }
@@ -187,7 +187,7 @@ textarea {
   padding: 5px;
   border-radius: 5px;
   background-color: var(--philly-orange);
-  color: white;
+  color: black;
   border: 1px solid white;
   cursor: pointer;
   display: none;
@@ -195,7 +195,7 @@ textarea {
 
 .selected-filter {
   border: 1px solid white;
-  color: white;
+  color: black;
   background-color: var(--philly-green);
 }
 
