@@ -11,15 +11,19 @@ const api_url_base = () => {
   return url;
 };
 
-let base = api_url_base();
+let BASE_PATH = api_url_base();
 
-const PIN_URL = base + "/api/get-pins";
-const TAG_URL = base + "/api/tags";
-const FILTER_URL = base + "/api/filter-pins";
-const ADD_PIN_URL = base + "/api/add-pin/";
-const ADD_COMMENT_URL = base + "/api/add-comment/";
-const ADD_USER_INFO_URL = base + "/api/add-user-info/";
-const ADD_SURVEY_URL = base + "/api/add-longform-survey/";
+const PIN_URL = BASE_PATH + "/api/get-pins";
+const TAG_URL = BASE_PATH + "/api/tags";
+const FILTER_URL = BASE_PATH + "/api/filter-pins";
+const ADD_PIN_URL = BASE_PATH + "/api/add-pin/";
+const ADD_COMMENT_URL = BASE_PATH + "/api/add-comment/";
+const ADD_USER_INFO_URL = BASE_PATH + "/api/add-user-info/";
+const ADD_SURVEY_URL = BASE_PATH + "/api/add-longform-survey/";
+const GO_TO_SURVEY_PAGE_URL = BASE_PATH + "/survey";
+const GO_TO_DEMOGRAPHICS_PAGE_URL = BASE_PATH + "/demographics";
+const GO_TO_THANKS_PAGE_URL = BASE_PATH + "/thanks";
+const GO_TO_HOME_PAGE_URL = "./";
 
 const get_data_from_api = async (map, url, inner_func) => {
   /*
@@ -49,4 +53,9 @@ export {
   ADD_COMMENT_URL,
   ADD_USER_INFO_URL,
   ADD_SURVEY_URL,
+  GO_TO_SURVEY_PAGE_URL,
+  GO_TO_DEMOGRAPHICS_PAGE_URL,
+  GO_TO_THANKS_PAGE_URL,
+  GO_TO_HOME_PAGE_URL,
+  BASE_PATH,
 };
