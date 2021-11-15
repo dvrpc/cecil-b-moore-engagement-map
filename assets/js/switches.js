@@ -39,42 +39,53 @@ const toggle_tags_when_adding_pin = (div) => {
 };
 
 const toggle_tags_when_filtering_map = (div) => {
-  // when filtering the map, set the button class
-  // to `.selected-filter` and then adjust the map with
-  // a mapbox filter
-  toggle_button_state(div, "selected-filter");
+  // this action can only be done when the "clear filter" button
+  // is not showing
+  let clear_button = document.getElementById("clear-filter-button");
 
-  // Remove all other selected styles on tag buttons
-  // if they were not the one that was clicked on
-  let selected_tags = Array.from(
-    document.getElementsByClassName("map-filters")
-  );
+  if (clear_button.style.display != "inline") {
+    // when filtering the map, set the button class
+    // to `.selected-filter` and then adjust the map with
+    // a mapbox filter
+    toggle_button_state(div, "selected-filter");
 
-  selected_tags.forEach((tag) => {
-    if (tag.classList.contains("selected-filter") & (div.target.id != tag.id)) {
-      tag.classList.remove("selected-filter");
-    }
-  });
+    // Remove all other selected styles on tag buttons
+    // if they were not the one that was clicked on
+    let selected_tags = Array.from(
+      document.getElementsByClassName("map-filters")
+    );
 
-  // Reload data from API with only those pins that were tagged
-  // with the value that was clicked on
-  let tag_id = div.target.id.replace("filter-toggles-", "");
-  let url = FILTER_URL + "/?" + tag_id + "=True";
+    selected_tags.forEach((tag) => {
+      if (
+        tag.classList.contains("selected-filter") &
+        (div.target.id != tag.id)
+      ) {
+        tag.classList.remove("selected-filter");
+      }
+    });
 
-  filter_pins(map, url);
+    // Reload data from API with only those pins that were tagged
+    // with the value that was clicked on
+    let tag_id = div.target.id.replace("filter-toggles-", "");
+    let url = FILTER_URL + "/?" + tag_id + "=True";
 
-  // Show text on the screen letting the user know what
-  // category of pins have been selected
-  let selected_tag_text = div.target.textContent;
+    filter_pins(map, url);
 
-  let text_div = document.getElementById("active-filter-text");
-  text_div.innerHTML =
-    "<p>Showing all comments related to:<p><h3> " + selected_tag_text + "</h3>";
+    // Show text on the screen letting the user know what
+    // category of pins have been selected
+    let selected_tag_text = div.target.textContent;
 
-  set_display_to_id("active-filter-text", "inline");
+    let text_div = document.getElementById("active-filter-text");
+    text_div.innerHTML =
+      "<p>Showing all comments related to:<p><h3> " +
+      selected_tag_text +
+      "</h3>";
 
-  // Once a filter has been applied, the "clear filter" button appears
-  set_display_to_id("clear-filter-button", "inline");
+    set_display_to_id("active-filter-text", "inline");
+
+    // Once a filter has been applied, the "clear filter" button appears
+    set_display_to_id("clear-filter-button", "inline");
+  }
 };
 
 const set_mouse_to_crosshair = (map) => {
