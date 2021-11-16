@@ -206,14 +206,11 @@ hr {
 #info-footer {
   display: flex;
   justify-content: space-around;
-  font-size: 10px;
 }
 
 #disclaimer {
   display: none;
-  font-size: 12px;
   font-style: italic;
-  /* line-height: normal; */
 }
 #disclaimer-toggle {
   text-decoration: underline;

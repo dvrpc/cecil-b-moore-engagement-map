@@ -1,3 +1,4 @@
+import { doBBoxOverlap } from "@turf/boolean-contains";
 import { FILTER_URL } from "./api/base";
 import { filter_pins } from "./api/load_data";
 import { map } from "./map/map";
@@ -40,10 +41,13 @@ const toggle_tags_when_adding_pin = (div) => {
 
 const toggle_tags_when_filtering_map = (div) => {
   // this action can only be done when the "clear filter" button
-  // is not showing
+  // is not showing or if the user clicks on a non-selected tag
   let clear_button = document.getElementById("clear-filter-button");
 
-  if (clear_button.style.display != "inline") {
+  if (
+    clear_button.style.display != "inline" ||
+    !div.target.classList.contains("selected-filter")
+  ) {
     // when filtering the map, set the button class
     // to `.selected-filter` and then adjust the map with
     // a mapbox filter
