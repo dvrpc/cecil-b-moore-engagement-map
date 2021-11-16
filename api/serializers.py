@@ -1,4 +1,3 @@
-from django.contrib.auth.models import User, Group
 from rest_framework import serializers
 from rest_framework_gis.serializers import GeoFeatureModelSerializer
 
@@ -6,22 +5,6 @@ from rest_framework_gis.serializers import GeoFeatureModelSerializer
 from pins.models import Pin, Comment, MapUser, LongformSurvey
 
 from .configuration import TAGS
-
-
-class UserSerializer(serializers.HyperlinkedModelSerializer):
-    """This is the built-in Django user for authentication"""
-
-    class Meta:
-        model = User
-        fields = ["url", "username", "email", "groups"]
-
-
-class GroupSerializer(serializers.HyperlinkedModelSerializer):
-    """This is the built-in Django groups tied to each 'User'"""
-
-    class Meta:
-        model = Group
-        fields = ["url", "name"]
 
 
 class PinSerializer(serializers.HyperlinkedModelSerializer):
