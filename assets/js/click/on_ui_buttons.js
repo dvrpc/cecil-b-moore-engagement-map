@@ -179,6 +179,9 @@ const _click_button_to_submit_demographic_survey = async () => {
     }
   });
 
+  // Get the gender value provided by the user
+  let gender = document.getElementById("gender").value;
+
   // Get the zipcode value provided by the user
   let zipcode = document.getElementById("zipcode").value;
 
@@ -191,8 +194,9 @@ const _click_button_to_submit_demographic_survey = async () => {
     q2: race,
     q3: age,
     q4: disability,
-    q5: zipcode,
-    q6: email,
+    q5: gender,
+    q7: zipcode,
+    q8: email,
   };
 
   let response = await add_user_info_to_database(user_data);

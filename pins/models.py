@@ -77,6 +77,7 @@ class MapUser(models.Model):
     q4 = models.TextField(blank=True)
     q5 = models.TextField(blank=True)
     q6 = models.TextField(blank=True)
+    q7 = models.TextField(blank=True)
 
     def __str__(self):
         return self.ip_address
