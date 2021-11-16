@@ -75,7 +75,7 @@ let q4 = {
 let q5 = {
   id: "q5",
   base_div: "questions-about-demographics",
-  prompt: "What is your zipcode?",
+  prompt: "What is your gender?",
   type: "input",
   other: false,
   options: false,
@@ -85,6 +85,16 @@ let q5 = {
 let q6 = {
   id: "q6",
   base_div: "questions-about-demographics",
+  prompt: "What is your zipcode?",
+  type: "input",
+  other: false,
+  options: false,
+  loader_function: add_basic_question_to_survey,
+};
+
+let q7 = {
+  id: "q7",
+  base_div: "questions-about-demographics",
   prompt:
     "Are you interested in receiving email updates about this project? <br>If so, please provide your email address:",
   type: "input",
@@ -92,7 +102,7 @@ let q6 = {
   options: false,
   loader_function: add_basic_question_to_survey,
 };
-[q1, q2, q3, q4, q5, q6].forEach((q) => {
+[q1, q2, q3, q4, q5, q6, q7].forEach((q) => {
   q.loader_function(q);
 });
 
@@ -111,6 +121,7 @@ document.getElementById("submit-button").onclick = () => {
     q4: get_radio_input("q4"),
     q5: get_textarea_input("q5"),
     q6: get_textarea_input("q6"),
+    q6: get_textarea_input("q7"),
   };
 
   add_user_info_to_database(data).then(async (response) => {

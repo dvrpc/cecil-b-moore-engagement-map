@@ -57,7 +57,17 @@ class MapUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = MapUser
-        fields = ["ip_address", "responded_to_survey_question", "q1", "q2", "q3", "q4", "q5", "q6"]
+        fields = [
+            "ip_address",
+            "responded_to_survey_question",
+            "q1",
+            "q2",
+            "q3",
+            "q4",
+            "q5",
+            "q6",
+            "q7",
+        ]
 
 
 class LongformSurveySerializer(serializers.ModelSerializer):
