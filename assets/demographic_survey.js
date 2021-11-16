@@ -121,7 +121,7 @@ document.getElementById("submit-button").onclick = () => {
     q4: get_radio_input("q4"),
     q5: get_textarea_input("q5"),
     q6: get_textarea_input("q6"),
-    q6: get_textarea_input("q7"),
+    q7: get_textarea_input("q7"),
   };
 
   add_user_info_to_database(data).then(async (response) => {
