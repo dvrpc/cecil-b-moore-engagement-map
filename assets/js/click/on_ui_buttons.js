@@ -195,8 +195,8 @@ const _click_button_to_submit_demographic_survey = async () => {
     q3: age,
     q4: disability,
     q5: gender,
-    q7: zipcode,
-    q8: email,
+    q6: zipcode,
+    q7: email,
   };
 
   let response = await add_user_info_to_database(user_data);
