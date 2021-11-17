@@ -13,7 +13,7 @@ from .serializers import (
 )
 from pins.models import Pin, MapUser
 
-from .configuration import TAGS
+from .configuration import TAGS_ENGLISH, TAGS_SPANISH
 
 
 class PinGeoViewSet(viewsets.ReadOnlyModelViewSet):
@@ -34,15 +34,18 @@ class PinFilterList(generics.ListAPIView):
     queryset = Pin.objects.all()
     serializer_class = PinGeoSerializer
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = [f"tag_{x}" for x in range(1, len(TAGS) + 1)]
+    filterset_fields = [f"tag_{x}" for x in range(1, len(TAGS_ENGLISH) + 1)]
 
 
 @api_view(["GET"])
-def all_tags(request):
+def all_tags(request, language: str = "en"):
     """
     API endpoint to see all TAG_X environment variables
     """
-    return Response(TAGS, status=status.HTTP_200_OK)
+    if "language" in request.query_params and request.query_params["language"] == "es":
+        return Response(TAGS_SPANISH, status=status.HTTP_200_OK)
+    else:
+        return Response(TAGS_ENGLISH, status=status.HTTP_200_OK)
 
 
 def ensure_user_is_in_db(client_ip) -> bool:
