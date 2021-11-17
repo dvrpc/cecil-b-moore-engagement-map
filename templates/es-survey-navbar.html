@@ -1,0 +1,14 @@
+{% extends "base-navbar.html" %}
+
+<!-- prettier-ignore -->
+{% load static %}
+
+<!-- prettier-ignore -->
+{% block internalbuttons %}
+<a href="." style="text-decoration: none">
+  <button id="about-button">
+    <img id="about-icon" src="{% static 'images/smallpin.png' %}" alt="" />
+    <span class="nav-button-text"> Pegar un comentario al mapa </span>
+  </button>
+</a>
+{% endblock %}

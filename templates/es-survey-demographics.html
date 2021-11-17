@@ -1,0 +1,39 @@
+{% extends "es-survey-navbar.html" %}
+
+<!-- prettier-ignore -->
+{% load static %}
+
+<!-- prettier-ignore -->
+{% block cssfile %}
+<!-- prettier-ignore -->
+<link rel="stylesheet" type="text/css" href="{% static 'survey-demographics.css' %}" />
+{% endblock %}
+
+<!-- prettier-ignore -->
+{% block content %}
+<div id="longform-survey">
+  <form id="form-for-survey">
+    <div id="questions-about-demographics">
+      <h1>Háblenos de usted.</h1>
+      <p id="description">
+        El proceso de acercamiento al público de la DVRPC idealmente
+        representará a los residentes del área del proyecto de Cecil B. Moore
+        Avenue en su diversidad geográfica y demográfica. Ayúdenos a entender
+        quiénes están contestando esta encuesta compartiendo algunas de sus
+        características demográficas.
+      </p>
+    </div>
+
+    <div id="submit-survey">
+      <button id="submit-button">Envíe</button>
+      <button id="nothanks-button">No, gracias</button>
+    </div>
+  </form>
+</div>
+{% endblock %}
+
+<!-- prettier-ignore -->
+{% block jsscript %}
+<!-- prettier-ignore -->
+<script defer type="module" src="{% static 'es-survey-demographics-bundle.js' %}"></script>
+{% endblock %}

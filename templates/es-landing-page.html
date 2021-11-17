@@ -1,0 +1,364 @@
+{% extends "base-navbar.html" %}
+
+<!-- prettier-ignore -->
+{% load static %}
+
+<!-- prettier-ignore -->
+{% block cssfile %}
+<link rel="stylesheet" type="text/css" href="{% static 'index.css' %}" />
+{% endblock %}
+
+<!-- prettier-ignore -->
+{% block internalbuttons %}
+<button id="about-button">
+  <img id="about-icon" src="{% static 'images/info.png' %}" alt="" />
+  <span class="nav-button-text"> Cómo usar el mapa </span>
+</button>
+
+<button id="filter-button">
+  <img id="filter-icon" src="{% static 'images/filter.png' %}" alt="" />
+
+  <span class="nav-button-text"> Filtrar comentarios </span>
+</button>
+{% endblock %}
+
+<!-- prettier-ignore -->
+{% block primarybuttons %}
+<a href="#" style="text-decoration: none" onclick="return false;">
+  <button id="button-to-add-pin">
+    <img id="pin-icon" src="{% static 'images/pin.png' %}" alt="" />
+    Pegar un comentario <br />
+    al mapa
+  </button>
+</a>
+
+<a id="link-to-survey" style="text-decoration: none">
+  <button id="button-to-add-survey">
+    <img
+      id="comment-icon"
+      src="{% static 'images/comment.png' %}"
+      alt=""
+    />Compartir sus ideas sobre Cecil B. Moore
+  </button>
+</a>
+{% endblock %}
+
+<!-- prettier-ignore -->
+{% block content %}
+<div id="map">
+  <div id="messages">
+    <div id="success-alert" class="alert">
+      <span class="closebtn" onclick="this.parentElement.style.display='none';"
+        >&times;</span
+      >
+      <p>¡Gracias por compartir su comentario!</p>
+      <p>
+        Por favor no dude en añadir otro, o explore los comentarios de otras
+        personas.
+      </p>
+    </div>
+
+    <div id="success-alert-for-comment" class="alert">
+      <span class="closebtn" onclick="this.parentElement.style.display='none';"
+        >&times;</span
+      >
+      <p>¡Gracias por compartir su reacción!</p>
+    </div>
+
+    <div id="warning-alert" class="alert">
+      <span class="closebtn" onclick="this.parentElement.style.display='none';"
+        >&times;</span
+      >
+      <p>
+        ¡No se encontró marcador en el mapa! Haga clic en el mapa para añadir un
+        marcador, o vuelva a oprimir el botón "envíe su comentario" para añadir
+        su comentario al mapa sin una ubicación específica.
+      </p>
+    </div>
+
+    <div id="study-area-alert" class="alert">
+      <span class="closebtn" onclick="this.parentElement.style.display='none';"
+        >&times;</span
+      >
+      <p>
+        Haga clic en el área de estudio del proyecto para añadir un marcador al
+        mapa.
+      </p>
+    </div>
+
+    <div id="ui-message">
+      <div id="click-map-text">
+        <h3>Haga clic en el mapa para seleccionar un lugar</h3>
+      </div>
+      <div id="active-filter-text">filter text</div>
+    </div>
+  </div>
+
+  <div id="survey-form">
+    <span id="close-form" class="close-box-button">&times;</span>
+
+    <h1>¿Cuáles son sus inquietudes?</h1>
+
+    <div id="user-input">
+      <textarea name="" id="prompt_1" cols="3" rows="5"></textarea>
+
+      <p>Seleccione los temas correspondientes:</p>
+    </div>
+
+    <button id="submit-pin">Envíe su comentario</button>
+  </div>
+
+  <div id="detail-form">
+    <span id="close-details" class="close-box-button">&times;</span>
+
+    <div id="pin-data">
+      <div id="pin-main-comment">
+        <h2>Comentario</h2>
+        <p id="detail-prompt"></p>
+      </div>
+
+      <div id="pin-main-tags">
+        <h2>Temas</h2>
+        <div id="detail-tags"></div>
+      </div>
+    </div>
+
+    <h2 id="reaction-header">Reacciones</h2>
+    <div id="comments-for-pin"></div>
+
+    <h2>¿Tiene una reacción que desea compartir?</h2>
+    <textarea name="" id="comment-text" cols="10" rows="2"></textarea>
+
+    <button id="submit-reaction">Envíe su reacción</button>
+
+    <p id="selected-pin-id" style="display: none">X</p>
+  </div>
+
+  <div id="info-box">
+    <span id="close-info" class="close-box-button">&times;</span>
+    <h1>
+      ¡Bienvenido al mapa de participación pública del proyecto Visión Cero en
+      Cecil B. Moore!
+    </h1>
+
+    <p>
+      La
+
+      <a href="https://www.dvrpc.org/" target="_blank">
+        Comisión Regional de Planificación del Valle de Delaware (DVRPC)
+      </a>
+
+      y la
+
+      <a href="http://www.phillyotis.com/" target="_blank">
+        Oficina de Transporte, Infraestructura y Sostenibilidad (oTIS) de la
+        Ciudad de Filadelfia</a
+      >
+
+      están estudiando a Cecil B. Moore Avenue, entre 10th Street y Willington
+      Street, con el objetivo de mejorar la seguridad de todos los usuarios de
+      la calle. Este mapa fue creado para ayudarle a compartir sus ideas sobre
+      el área de estudio con el equipo del proyecto de DVRPC / oTIS.
+    </p>
+    <ul>
+      <li>
+        Oprima el botón amarillo para añadir un comentario sobre un lugar
+        específico.
+      </li>
+      <li>
+        Oprima el botón azul para decirnos cómo usa Cecil B. Moore Avenue hoy, y
+        cuál es su visión de su futuro.
+      </li>
+      <li>
+        Para ver más información, visite
+        <a href="https://www.dvrpc.org/cecilbmoore" target="_blank"
+          >el sitio de internet del proyecto</a
+        >
+      </li>
+    </ul>
+
+    <div id="info-footer">
+      <a
+        href="https://www.dvrpc.org/Products/web22015"
+        target="_blank"
+        rel="noopener"
+        >Abstract</a
+      >
+      <a href="https://www.dvrpc.org/policies" target="_blank" rel="noopener"
+        >Policies</a
+      >
+      <div id="disclaimer-toggle">Disclaimer</div>
+    </div>
+
+    <div id="disclaimer">
+      Esta página de internet es un recurso público con información general. La
+      Comisión Regional de Planificación del Valle de Delaware (DVRPC) no ofrece
+      garantía ni promesa alguna sobre el contenido, la secuencia, la exactitud,
+      la oportunidad o la completitud de cualquier parte de la información
+      espacial o de la base de datos que aquí se presentan. La DVRPC y sus
+      agencias asociadas a nivel estatal, local o de otros niveles no asumirán
+      responsabilidad alguna por errores, omisiones o imprecisiones en la
+      información provista, sin importar cuál fue la causa; ni por las
+      decisiones tomadas o las acciones emprendidas o no emprendidas por persona
+      alguna con base en la información o los datos aquí proporcionados.
+    </div>
+  </div>
+
+  <div id="filter-box">
+    <span id="close-filter" class="close-box-button">&times;</span>
+    <h1>Filter the map points</h1>
+    <p>
+      Click on a topic to see all related comments
+
+      <span id="clear-filter-button"> clear filter </span>
+    </p>
+    <div id="filter-toggles"></div>
+  </div>
+
+  <div id="demographic-survey">
+    <span id="close-demographic-survey" class="close-box-button">&times;</span>
+    <h1>Háblenos de usted.</h1>
+
+    <p>
+      El proceso de acercamiento al público de la DVRPC idealmente representará
+      a los residentes del área del proyecto de Cecil B. Moore Avenue en su
+      diversidad geográfica y demográfica. Ayúdenos a entender quiénes están
+      contestando esta encuesta compartiendo algunas de sus características
+      demográficas.
+    </p>
+
+    <div id="demo-layout">
+      <div class="demographic-question first-question">
+        <p>¿Es usted de origen hispano, latino o español?</p>
+        <div>
+          <input type="radio" id="hispanic-yes" name="hispanic" value="yes" />
+          <label for="hispanic-yes">Sí</label>
+        </div>
+        <div>
+          <input type="radio" id="hispanic-no" name="hispanic" value="no" />
+          <label for="hispanic-no">No</label>
+        </div>
+      </div>
+      <div class="demographic-question">
+        <p>
+          ¿Con qué raza se identifica? <br />
+          Marque todas las opciones que correspondan.
+        </p>
+
+        <div>
+          <input type="checkbox" id="race-native-american" name="race-na" />
+          <label for="race-native-american"
+            >Indígenas de las Américas o nativo de Alaska</label
+          >
+        </div>
+
+        <div>
+          <input type="checkbox" id="race-asian" name="race-asian" />
+          <label for="race-asian">Asiático o de las islas del Pacífico</label>
+        </div>
+
+        <div>
+          <input type="checkbox" id="race-black" name="race-black" />
+          <label for="race-black">Africano o afroamericano</label>
+        </div>
+
+        <div>
+          <input type="checkbox" id="race-white" name="race-white" />
+          <label for="race-white">Blanco</label>
+        </div>
+
+        <div>
+          <input type="checkbox" id="race-other" name="race-other" />
+          <label for="race-other"
+            >Otro:
+            <input type="text" id="race-other-input" style="width: 50%" />
+          </label>
+        </div>
+      </div>
+
+      <div class="demographic-question">
+        <p>¿Cuál es su edad?</p>
+
+        <div>
+          <input type="radio" id="age-u18" name="age" value="u18" />
+          <label for="age-u18">Menor de 18</label>
+        </div>
+
+        <div>
+          <input type="radio" id="age-a18-34" name="age" value="18-34" />
+          <label for="age-a18-34">18 - 34</label>
+        </div>
+
+        <div>
+          <input type="radio" id="age-a35-44" name="age" value="35-44" />
+          <label for="age-a35-44">35 - 44</label>
+        </div>
+
+        <div>
+          <input type="radio" id="age-a45-54" name="age" value="45-54" />
+          <label for="age-a44-54">45 - 54</label>
+        </div>
+        <div>
+          <input type="radio" id="age-a55-64" name="age" value="55-64" />
+          <label for="age-a55-64">55 - 64</label>
+        </div>
+        <div>
+          <input type="radio" id="age-a65-74" name="age" value="65-74" />
+          <label for="age-a65-74">65 - 74</label>
+        </div>
+        <div>
+          <input type="radio" id="age-a75" name="age" value="75+" />
+          <label for="age-a75">75 años o mayor</label>
+        </div>
+      </div>
+
+      <div class="demographic-question">
+        <p>
+          ¿Se considera una persona con una discapacidad que requiere asistencia
+          para la movilidad, como un bastón, andadera, scooter o silla de
+          ruedas?
+        </p>
+        <div>
+          <input
+            type="radio"
+            id="disability-yes"
+            name="disability"
+            value="yes"
+          />
+          <label for="disability-yes">Sí</label>
+        </div>
+        <div>
+          <input type="radio" id="disability-no" name="disability" value="no" />
+          <label for="disability-no">No</label>
+        </div>
+      </div>
+
+      <div class="demographic-question">
+        <p>¿Cuál es su género?</p>
+        <input type="text" id="gender" />
+        <br />
+
+        <p>¿Cuál es su código postal?</p>
+        <input type="text" id="zipcode" />
+
+        <br />
+
+        <p>
+          ¿Quiere mantenerse informado sobre este proyecto? Si es así,
+          suscríbase con su dirección de correo electrónico:
+        </p>
+        <input type="text" id="email" />
+      </div>
+    </div>
+    <div style="text-align: center">
+      <div id="submit-demographics">Envíe</div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+<!-- prettier-ignore -->
+{% block jsscript %}
+<script defer type="module" src="{% static 'es-index-bundle.js' %}"></script>
+{% endblock %}
