@@ -33,16 +33,22 @@ const get_textarea_input = (qid) => {
   return document.getElementById(qid).value;
 };
 
-const get_priority_ranking = (qid) => {
+const get_priority_ranking = (qid, language = "en") => {
   let query = '[id ^= "' + qid + '"]';
 
   let priorities = ["", "", "", "", ""];
+  let other_text = "Other: ";
+  let priority_text = "(select a priority)";
+  if (language == "es") {
+    other_text = "Otro: ";
+    priority_text = "(selecciona una prioridad)";
+  }
 
   document.querySelectorAll(query).forEach((el) => {
-    if (el.value != "(select a priority)") {
-      let priority_text = el.nextSibling.textContent;
-      if (priority_text != "Other: ") {
-        priorities[el.value - 1] = priority_text;
+    if (el.value != priority_text) {
+      let priority_value = el.nextSibling.textContent;
+      if (priority_value != other_text) {
+        priorities[el.value - 1] = priority_value;
       } else {
         let text_entry = el.nextSibling.nextSibling.value;
         priorities[el.value - 1] = text_entry;
