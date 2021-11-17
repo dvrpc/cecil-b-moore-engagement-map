@@ -45,6 +45,7 @@
   box-shadow: 6px 6px 2px 1px rgba(0, 0, 0, 0.2);
   border-radius: 7px;
   cursor: pointer;
+  color: black;
 }
 
 #button-to-add-pin {
