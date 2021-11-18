@@ -43,7 +43,7 @@ class Pin(models.Model):
     geom = models.PointField(default=Point(0.0, 0.0))
 
     def __str__(self):
-        return str(self.geom)
+        return str(self.geom) + " | " + self.prompt_1
 
 
 class Comment(models.Model):

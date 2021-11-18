@@ -1,5 +1,6 @@
 from rest_framework import viewsets, permissions, status, generics
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, authentication_classes
+from rest_framework.authentication import TokenAuthentication
 from rest_framework.response import Response
 from ipware import get_client_ip
 from django_filters.rest_framework import DjangoFilterBackend
@@ -13,7 +14,7 @@ from .serializers import (
 )
 from pins.models import Pin, MapUser
 
-from .configuration import TAGS
+from .configuration import TAGS_ENGLISH, TAGS_SPANISH
 
 
 class PinGeoViewSet(viewsets.ReadOnlyModelViewSet):
@@ -34,15 +35,20 @@ class PinFilterList(generics.ListAPIView):
     queryset = Pin.objects.all()
     serializer_class = PinGeoSerializer
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = [f"tag_{x}" for x in range(1, len(TAGS) + 1)]
+    filterset_fields = [f"tag_{x}" for x in range(1, len(TAGS_ENGLISH) + 1)]
 
 
 @api_view(["GET"])
 def all_tags(request):
     """
-    API endpoint to see all TAG_X environment variables
+    API endpoint to see all tag names.
+    Will provide english by default, and will provide
+    spanish if the request comes through with the suffix '/?lanugage=es'
     """
-    return Response(TAGS, status=status.HTTP_200_OK)
+    if "language" in request.query_params and request.query_params["language"] == "es":
+        return Response(TAGS_SPANISH, status=status.HTTP_200_OK)
+    else:
+        return Response(TAGS_ENGLISH, status=status.HTTP_200_OK)
 
 
 def ensure_user_is_in_db(client_ip) -> bool:
@@ -68,6 +74,7 @@ def ensure_user_is_in_db(client_ip) -> bool:
 
 
 @api_view(["POST"])
+@authentication_classes([TokenAuthentication])
 def add_pin(request):
     """
     Add a pin to the map.
@@ -101,6 +108,7 @@ def add_pin(request):
 
 
 @api_view(["POST"])
+@authentication_classes([TokenAuthentication])
 def add_comment(request):
     """
     Add a comment record tied to an existing pin
@@ -134,6 +142,7 @@ def add_comment(request):
 
 
 @api_view(["POST"])
+@authentication_classes([TokenAuthentication])
 def add_user_info(request):
     """
     Add user info to the database
@@ -177,6 +186,7 @@ def add_user_info(request):
 
 
 @api_view(["POST"])
+@authentication_classes([TokenAuthentication])
 def add_longform_survey(request):
     """
     Add longform survey to the database

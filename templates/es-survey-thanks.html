@@ -1,0 +1,55 @@
+{% extends "es-survey-navbar.html" %}
+
+<!-- prettier-ignore -->
+{% load static %}
+
+<!-- prettier-ignore -->
+{% block cssfile %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'survey-thanks.css' %}"
+/>
+{% endblock %}
+
+<!-- prettier-ignore -->
+{% block content %}
+<div id="longform-survey">
+  <h1>¡Gracias por completar nuestra encuesta!</h1>
+
+  <div id="action-text">
+    <p>
+      Si tiene algún comentario sobre lugares específicos a lo largo de la
+      Avenida Cecil B. Moore, haga clic en el botón amarillo a continuación para
+      agregar una chincheta al mapa.
+    </p>
+    <p>
+      Para obtener más información, visite
+      <a
+        href="https://www.dvrpc.org/cecilbmoore"
+        target="_blank"
+        style="color: black"
+        >el sitio web del proyecto</a
+      >.
+    </p>
+  </div>
+
+  <div
+    id="standalone-yellow-button"
+    style="
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 40px;
+    "
+  >
+    <a href="./" style="text-decoration: none">
+      <button id="button-to-add-pin" style="margin-left: 0px">
+        <img id="pin-icon" src="{% static 'images/pin.png' %}" alt="" />
+        Pegar un comentario al mapa
+      </button>
+    </a>
+  </div>
+</div>
+
+{% endblock %}

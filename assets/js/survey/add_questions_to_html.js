@@ -1,4 +1,4 @@
-const add_basic_question_to_survey = (question) => {
+const add_basic_question_to_survey = (question, language = "en") => {
   let survey = document.getElementById(question.base_div);
 
   let qdiv = document.createElement("div");
@@ -34,9 +34,15 @@ const add_basic_question_to_survey = (question) => {
 
     // add the 'other' entry box if needed
     if (question.other) {
+      let other_text = "";
+      if (language == "es") {
+        other_text = "Otro: ";
+      } else {
+        other_text = "Other: ";
+      }
       // add the label
       let label = document.createElement("label");
-      label.innerHTML = "Other: ";
+      label.innerHTML = other_text;
       qdiv.appendChild(label);
 
       // add the checkbox
@@ -63,7 +69,7 @@ const add_basic_question_to_survey = (question) => {
   }
 };
 
-const load_1_to_5_question_set = (question) => {
+const load_1_to_5_question_set = (question, language = "en") => {
   let survey = document.getElementById(question.base_div);
 
   let qdiv = document.createElement("div");
@@ -94,13 +100,20 @@ const load_1_to_5_question_set = (question) => {
     radio_group.className = "select-one-to-five";
     subprompt.appendChild(radio_group);
 
+    let bad_text = " (Bad)";
+    let good_text = " (Good)";
+    if (language == "es") {
+      bad_text = " (Malo)";
+      good_text = " (Bueno)";
+    }
+
     [1, 2, 3, 4, 5].forEach((num) => {
       // add the label
       let label = document.createElement("label");
       if (num == 1) {
-        label.innerHTML = num.toString() + " (Bad)";
+        label.innerHTML = num.toString() + bad_text;
       } else if (num == 5) {
-        label.innerHTML = num.toString() + " (Great)";
+        label.innerHTML = num.toString() + good_text;
       } else {
         label.innerHTML = num.toString();
       }
@@ -120,7 +133,15 @@ const load_1_to_5_question_set = (question) => {
   });
 };
 
-const load_prioritization_question = (question) => {
+const load_prioritization_question = (question, language = "en") => {
+  let other_text = "Other:";
+  let priority_text = "(select a priority)";
+  let priority = "Priority #";
+  if (language == "es") {
+    other_text = "Otro:";
+    priority_text = "(selecciona una prioridad)";
+    priority = "Prioridad #";
+  }
   let survey = document.getElementById(question.base_div);
 
   let qdiv = document.createElement("div");
@@ -141,10 +162,10 @@ const load_prioritization_question = (question) => {
     if (counter == 1) {
       qdiv.appendChild(document.createElement("hr"));
     }
-    if (option != "Other:") {
+    if (option != other_text) {
       label.innerHTML = option + "<br/> <hr>";
     } else {
-      label.innerHTML = option + " ";
+      label.innerHTML = option;
     }
     label.className = "priority-choice";
     qdiv.appendChild(label);
@@ -156,18 +177,18 @@ const load_prioritization_question = (question) => {
 
     label.prepend(x);
 
-    ["(select a priority)", 1, 2, 3, 4, 5].forEach((num) => {
+    [priority_text, 1, 2, 3, 4, 5].forEach((num) => {
       let choice = document.createElement("option");
       choice.value = num;
-      if (num == "(select a priority)") {
+      if (num == priority_text) {
         choice.text = num;
       } else {
-        choice.text = "Priority #" + num;
+        choice.text = priority + num;
       }
       x.appendChild(choice);
     });
 
-    if (option == "Other:") {
+    if (option == other_text) {
       // add the text input
       var text = document.createElement("input");
       text.type = "text";
@@ -184,7 +205,7 @@ const load_prioritization_question = (question) => {
       // do other dropdowns have this value?
       document.querySelectorAll('[id ^= "q6"]').forEach((el) => {
         if (el.value == newest_value && el.id != changed_id) {
-          el.value = "(select a priority)";
+          el.value = priority_text;
         }
       });
     });

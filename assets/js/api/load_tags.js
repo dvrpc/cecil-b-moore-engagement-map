@@ -1,4 +1,4 @@
-import { get_data_from_api, TAG_URL } from "./base";
+import { get_data_from_api, TAG_URL_ENGLISH, TAG_URL_SPANISH } from "./base";
 import {
   toggle_tags_when_adding_pin,
   toggle_tags_when_filtering_map,
@@ -62,9 +62,15 @@ const _add_tags_to_all_the_divs = (map, json) => {
   });
 };
 
-const add_tag_options_to_map = (map) => {
+const add_tag_options_to_map = (map, language) => {
   // Wrap the tag adding function inside the API function
-  get_data_from_api(map, TAG_URL, _add_tags_to_all_the_divs);
+  let url = "";
+  if (language == "es") {
+    url = TAG_URL_SPANISH;
+  } else {
+    url = TAG_URL_ENGLISH;
+  }
+  get_data_from_api(map, url, _add_tags_to_all_the_divs);
 };
 
 export { add_tag_options_to_map };
