@@ -38,9 +38,11 @@ class PinFilterList(generics.ListAPIView):
 
 
 @api_view(["GET"])
-def all_tags(request, language: str = "en"):
+def all_tags(request):
     """
-    API endpoint to see all TAG_X environment variables
+    API endpoint to see all tag names.
+    Will provide english by default, and will provide
+    spanish if the request comes through with the suffix '/?lanugage=es'
     """
     if "language" in request.query_params and request.query_params["language"] == "es":
         return Response(TAGS_SPANISH, status=status.HTTP_200_OK)
