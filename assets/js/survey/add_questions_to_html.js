@@ -134,11 +134,11 @@ const load_1_to_5_question_set = (question, language = "en") => {
 };
 
 const load_prioritization_question = (question, language = "en") => {
-  let other_text = "Other: ";
+  let other_text = "Other:";
   let priority_text = "(select a priority)";
   let priority = "Priority #";
   if (language == "es") {
-    other_text = "Otro: ";
+    other_text = "Otro:";
     priority_text = "(selecciona una prioridad)";
     priority = "Prioridad #";
   }
@@ -165,7 +165,7 @@ const load_prioritization_question = (question, language = "en") => {
     if (option != other_text) {
       label.innerHTML = option + "<br/> <hr>";
     } else {
-      label.innerHTML = option + " ";
+      label.innerHTML = option;
     }
     label.className = "priority-choice";
     qdiv.appendChild(label);

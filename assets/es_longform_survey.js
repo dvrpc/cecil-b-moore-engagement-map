@@ -130,7 +130,7 @@ let q6 = {
     "Espacios seguros para subir a autobuses",
     "Tiempos de conducción rápidos",
     "Menos tráfico en las calles laterales",
-    "Otro: ",
+    "Otro:",
   ],
   loader_function: load_prioritization_question,
 };
@@ -172,7 +172,7 @@ document.getElementById("submit-button").onclick = () => {
     condition_7: get_radio_input("q5-7"),
     condition_8: get_radio_input("q5-8"),
     condition_9: get_radio_input("q5-9"),
-    priorities: get_priority_ranking("q6"),
+    priorities: get_priority_ranking("q6", "es"),
     ideas: get_textarea_input("q7"),
   };
 

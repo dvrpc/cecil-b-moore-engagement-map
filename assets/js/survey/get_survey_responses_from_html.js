@@ -37,10 +37,10 @@ const get_priority_ranking = (qid, language = "en") => {
   let query = '[id ^= "' + qid + '"]';
 
   let priorities = ["", "", "", "", ""];
-  let other_text = "Other: ";
+  let other_text = "Other:";
   let priority_text = "(select a priority)";
   if (language == "es") {
-    other_text = "Otro: ";
+    other_text = "Otro:";
     priority_text = "(selecciona una prioridad)";
   }
 
