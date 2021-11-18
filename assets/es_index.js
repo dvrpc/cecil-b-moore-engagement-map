@@ -18,7 +18,6 @@ import {
 } from "./js/api/load_data";
 import { add_tag_options_to_map } from "./js/api/load_tags";
 import { setup_icon_listeners } from "./js/click/on_ui_icons";
-import { GO_TO_ES_SURVEY_PAGE_URL } from "./js/api/base";
 
 map.on("load", function () {
   // Load geojson data for the first time
@@ -36,7 +35,3 @@ map.on("load", function () {
   // Add tags where they're needed in the map UI
   add_tag_options_to_map(map, "es");
 });
-
-document.getElementById("link-to-survey").onclick = () => {
-  window.location.replace(GO_TO_ES_SURVEY_PAGE_URL);
-};
