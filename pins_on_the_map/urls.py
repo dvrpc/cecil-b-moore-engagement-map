@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path("", include("pins.urls")),
-    path("api/", include("api.urls")),
+    path("webmaps/cbm/admin/", admin.site.urls),
+    path("webmaps/cbm/", include("pins.urls")),
+    path("webmaps/cbm/api/", include("api.urls")),
 ]

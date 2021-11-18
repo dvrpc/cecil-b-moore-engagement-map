@@ -1,17 +1,4 @@
-const api_url_base = () => {
-  // read webpack's 'mode' and alter the
-  // api route prefix in production
-  let current_env = process.env.NODE_ENV;
-
-  let url = "";
-
-  if (current_env == "production") {
-    url = "/webmaps/cbm";
-  }
-  return url;
-};
-
-let BASE_PATH = api_url_base();
+let BASE_PATH = "/webmaps/cbm";
 
 const PIN_URL = BASE_PATH + "/api/get-pins";
 const TAG_URL_ENGLISH = BASE_PATH + "/api/tags";
@@ -29,7 +16,7 @@ const GO_TO_HOME_PAGE_URL = "./";
 const GO_TO_ES_SURVEY_PAGE_URL = BASE_PATH + "/es/survey";
 const GO_TO_ES_DEMOGRAPHICS_PAGE_URL = BASE_PATH + "/es/demographics";
 const GO_TO_ES_THANKS_PAGE_URL = BASE_PATH + "/es/thanks";
-const GO_TO_ES_HOME_PAGE_URL = "./es";
+const GO_TO_ES_HOME_PAGE_URL = BASE_PATH + "/es";
 
 const get_data_from_api = async (map, url, inner_func) => {
   /*
