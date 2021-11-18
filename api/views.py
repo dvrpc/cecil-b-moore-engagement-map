@@ -1,5 +1,6 @@
 from rest_framework import viewsets, permissions, status, generics
-from rest_framework.decorators import api_view
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.decorators import api_view, authentication_classes
 from rest_framework.response import Response
 from ipware import get_client_ip
 from django_filters.rest_framework import DjangoFilterBackend
@@ -68,6 +69,7 @@ def ensure_user_is_in_db(client_ip) -> bool:
 
 
 @api_view(["POST"])
+@authentication_classes([TokenAuthentication])
 def add_pin(request):
     """
     Add a pin to the map.
@@ -101,6 +103,7 @@ def add_pin(request):
 
 
 @api_view(["POST"])
+@authentication_classes([TokenAuthentication])
 def add_comment(request):
     """
     Add a comment record tied to an existing pin
@@ -134,6 +137,7 @@ def add_comment(request):
 
 
 @api_view(["POST"])
+@authentication_classes([TokenAuthentication])
 def add_user_info(request):
     """
     Add user info to the database
@@ -177,6 +181,7 @@ def add_user_info(request):
 
 
 @api_view(["POST"])
+@authentication_classes([TokenAuthentication])
 def add_longform_survey(request):
     """
     Add longform survey to the database
