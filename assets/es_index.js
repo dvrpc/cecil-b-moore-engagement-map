@@ -33,5 +33,5 @@ map.on("load", function () {
   setup_icon_listeners(map);
 
   // Add tags where they're needed in the map UI
-  add_tag_options_to_map(map, "en");
+  add_tag_options_to_map(map, "es");
 });

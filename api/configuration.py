@@ -1,16 +1,55 @@
 """
-Load environment variables that are 
-prefixed with "TAG" into memory
+Generate tag names in each necessary language
 """
 
-import os
-from dotenv import find_dotenv, load_dotenv
+
+TAGS = [
+    {
+        "en": "Bicycle",
+        "es": "Bicicleta",
+    },
+    {
+        "en": "Pedestrian",
+        "es": "Peatonal",
+    },
+    {
+        "en": "Transit",
+        "es": "Transporte público",
+    },
+    {
+        "en": "Speeding",
+        "es": "Exceso de velocidad",
+    },
+    {
+        "en": "Visibility",
+        "es": "Visibilidad",
+    },
+    {
+        "en": "Access / ADA",
+        "es": "Acceso/ADA",
+    },
+    {
+        "en": "Maintenance",
+        "es": "Mantenimiento",
+    },
+    {
+        "en": "Traffic",
+        "es": "Tráfico",
+    },
+    {
+        "en": "Parking",
+        "es": "Estacionamiento",
+    },
+    {
+        "en": "Wayfinding",
+        "es": "Orientación",
+    },
+]
 
 
-load_dotenv(find_dotenv())
+TAGS_ENGLISH = {}
+TAGS_SPANISH = {}
 
-TAGS = {}
-for i in range(1, 11):
-    txt = os.getenv(f"TAG_{i}", None)
-    if txt:
-        TAGS[i] = txt
+for index, value in enumerate(TAGS):
+    TAGS_ENGLISH[index + 1] = value["en"]
+    TAGS_SPANISH[index + 1] = value["es"]

@@ -1,0 +1,33 @@
+{% extends "es-survey-navbar.html" %}
+
+<!-- prettier-ignore -->
+{% load static %}
+
+{% block cssfile %}
+<link rel="stylesheet" type="text/css" href="{% static 'survey-index.css' %}" />
+{% endblock %}
+
+<!-- prettier-ignore -->
+{% block content %}
+<div id="longform-survey">
+  <form id="form-for-survey">
+    <div id="questions-about-travel">
+      <h1>¿Cómo utiliza Cecil B. Moore Ave?</h1>
+    </div>
+
+    <div id="questions-about-priorities">
+      <h1>¿Cuál es su visión para Cecil B. Moore Ave?</h1>
+    </div>
+
+    <div id="submit-survey">
+      <button id="submit-button">Envíe</button>
+    </div>
+  </form>
+</div>
+{% endblock %}
+
+<!-- prettier-ignore -->
+{% block jsscript %}
+<!-- prettier-ignore -->
+<script defer type="module" src="{% static 'es-survey-index-bundle.js' %}"></script>
+{% endblock %}
